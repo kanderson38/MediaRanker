@@ -4,8 +4,16 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+book: 
+  title: It
+  creator: Stephen King
+  category: book
+  publication_year: 1986
+  description: Scary clown book with a giant spider too
+
+movie: 
+  category: movie
+  title: 12 Monkeys
+  creator: Terry Gilliam
+  publication_year: 1995
+  description: Time travel and also Brad Pitt as a crazy dude
