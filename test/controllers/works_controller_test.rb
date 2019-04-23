@@ -96,6 +96,11 @@ describe WorksController do
       expect {
         delete work_path(Work.first)
       }.must_change "Work.count", -1
+
+      must_respond_with :redirect
+      must_redirect_to works_path
+
+      check_flash
     end
   end
 end

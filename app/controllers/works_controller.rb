@@ -65,6 +65,23 @@ class WorksController < ApplicationController
     end
   end
 
+  def destroy
+    work = Work.find_by(id: params[:id])
+
+    unless work
+      flash[:status] = :warning
+      flash[:message] = "No work found for ID #{params[:id]}"
+      redirect_to root_path
+    end
+
+    work.destroy
+
+    flash[:status] = :success
+    flash[:message] = "Successfully deleted #{work.category} #{work.id}"
+
+    redirect_to works_path
+  end
+
   private
 
   def work_params

@@ -15,7 +15,7 @@
       <% @albums.each do |album| %>
         <tr>
           <td>Vote</td>
-          <td><%= album.title %></td>
+          <td><%= link_to album.title, work_path(album) %></td>
           <td><%= album.creator %></td>
           <td><%= album.publication_year %></td>
           <td>Upvote</td>
@@ -40,7 +40,7 @@
       <% @books.each do |book| %>
         <tr>
           <td>Vote</td>
-          <td><%= book.title %></td>
+          <td><%= link_to book.title, work_path(book) %></td>
           <td><%= book.creator %></td>
           <td><%= book.publication_year %></td>
           <td>Upvote</td>
@@ -65,7 +65,7 @@
       <% @movies.each do |movie| %>
         <tr>
           <td>Vote</td>
-          <td><%= movie.title %></td>
+          <td><%= link_to movie.title, work_path(movie) %></td>
           <td><%= movie.creator %></td>
           <td><%= movie.publication_year %></td>
           <td>Upvote</td>
