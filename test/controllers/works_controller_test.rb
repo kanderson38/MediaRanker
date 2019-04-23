@@ -32,6 +32,24 @@ describe WorksController do
 
       work = Work.last
       expect(work.title).must_equal "It"
+      check_flash
+    end
+  end
+
+  describe "show" do
+    it "must load the page with valid work ID" do
+      work_id = Work.first.id
+      get work_path(work_id)
+
+      must_respond_with :ok
+    end
+
+    it "must redirect with invalid work ID" do
+      get work_path(12345678)
+
+      must_redirect_to root_path
+
+      check_flash(:warning)
     end
   end
 end

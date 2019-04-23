@@ -26,7 +26,7 @@ class WorksController < ApplicationController
   end
 
   def show
-    @work = Work.find_by(params[:id])
+    @work = Work.find_by(id: params[:id])
 
     unless @work
       flash[:status] = :warning
