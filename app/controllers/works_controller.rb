@@ -25,6 +25,16 @@ class WorksController < ApplicationController
     end
   end
 
+  def show
+    @work = Work.find_by(params[:id])
+
+    unless @work
+      flash[:status] = :warning
+      flash[:message] = "No work found for ID #{params[:id]}"
+      redirect_to root_path
+    end
+  end
+
   private
 
   def work_params
