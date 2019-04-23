@@ -35,6 +35,36 @@ class WorksController < ApplicationController
     end
   end
 
+  def edit
+    @work = Work.find_by(id: params[:id])
+
+    unless @work
+      flash[:status] = :warning
+      flash[:message] = "No work found for ID #{params[:id]}"
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @work = Work.find_by(id: params[:id])
+
+    unless @work
+      flash[:status] = :warning
+      flash[:message] = "No work found for ID #{params[:id]}"
+      redirect_to root_path
+    end
+
+    if @work.update(work_params)
+      flash[:status] = :success
+      flash[:message] = "Successfully updated #{@work.category} #{@work.id}"
+      redirect_to work_path(@work)
+    else
+      flash.now[:status] = :warning
+      flash.now[:message] = "Could not update #{@work.category} #{@work.id}"
+      render :edit
+    end
+  end
+
   private
 
   def work_params

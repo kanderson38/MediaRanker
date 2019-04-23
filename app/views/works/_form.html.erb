@@ -3,10 +3,10 @@
     <%= f.label :category %>
     <%= f.select :category, options_for_select(["album", "book", "movie"], selected=@work.category) %>
     
-    <%= f.label :title, "work title (required):", class: 'work-label'%>
+    <%= f.label :title, "Work Title (required):", class: 'work-label'%>
     <%= f.text_field :title, placeholder: "Title", class: 'work-input'%>
  
-    <%= f.label :creator, "Creator:", class: 'work-label' %>
+    <%= f.label :creator, "Creator: (required)", class: 'work-label' %>
     <%= f.text_field :creator, placeholder: "Creator", class: 'work-input' %>
 
     <%= f.label :publication_year, "Year published:", class: 'work-label' %>

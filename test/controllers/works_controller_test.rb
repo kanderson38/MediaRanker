@@ -52,4 +52,50 @@ describe WorksController do
       check_flash(:warning)
     end
   end
+
+  describe "edit/update" do
+    let(:work_data) {
+      {
+        work: {
+          title: "It",
+          category: "book",
+          creator: "Stephen King",
+        },
+      }
+    }
+
+    it "must load the edit page" do
+      get edit_work_path(Work.first)
+
+      must_respond_with :ok
+    end
+
+    it "must redirect for invalid work id" do
+      get edit_work_path(1234567)
+      must_redirect_to root_path
+      check_flash(:warning)
+    end
+
+    it "must update the work" do
+      patch work_path(Work.first), params: work_data
+
+      expect(Work.first.title).must_equal "It"
+      check_flash
+    end
+
+    it "flashes a warning if invalid data is entered" do
+      work_data[:work][:title] = nil
+      patch work_path(Work.first), params: work_data
+
+      check_flash(:warning)
+    end
+  end
+
+  describe "destroy" do
+    it "removes the work from the db" do
+      expect {
+        delete work_path(Work.first)
+      }.must_change "Work.count", -1
+    end
+  end
 end
