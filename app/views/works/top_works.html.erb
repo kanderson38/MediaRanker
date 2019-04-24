@@ -1,6 +1,7 @@
 <section class="spotlight">
-    <h2>Media Spotlight:</h2>
+    <h2 class="spotlight-header">Media Spotlight:</h2>
     <h2 class="featured-work"><%= link_to @featured.title, work_path(@featured.id) %> by <%= @featured.creator %></h2>
+    <p class="spotlight_description"><%= @featured.description%></p>
 </section>
 
 <section class="top-ten-trio">

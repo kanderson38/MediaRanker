@@ -9,6 +9,14 @@ class WorksController < ApplicationController
     @work = Work.new
   end
 
+  def top_works
+    @featured = Work.top_work
+
+    @books = Work.top_ten("book")
+    @movies = Work.top_ten("movie")
+    @albums = Work.top_ten("album")
+  end
+
   def create
     @work = Work.new(work_params)
 
