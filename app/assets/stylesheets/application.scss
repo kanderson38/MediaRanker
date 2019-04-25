@@ -17,18 +17,32 @@
 @import "**/*";
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Gudea', sans-serif;
+}
+
+main {
+    padding: 2rem;
 }
 
 .app-header__header {
     max-width: 100%;
+    height: 200px;
     background-color: #B2DFDB;
     margin-bottom: 0.5rem;
     padding: 2rem 1rem 0.5rem 1rem;
     text-align: center;
 }
 
+.app-header__nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
 
+.app-header__nav .btn {
+    margin-left: 25px;
+}
 
 .nav {
     display: flex;
@@ -40,13 +54,33 @@ body {
 
 h1, h2, h3, h4, h5 {
     font-family: "Gudea", sans-serif;
+    font-weight: bold;
+    color: #26A69A;
+}
+
+a {
+    color: #26A69A;
+}
+
+.nav-link {
+    color: #00796B;
+}
+
+.nav-link:hover {
+    color: #00796B;
+    text-decoration: none;
 }
 
 .app-header__header h1 a {
     color: tomato;
+    padding-right: 25px;
+    border-right: 2px solid white;
+    margin-bottom: 3rem;
+    display: inline-block;
 }
 
 .app-header__header h1 small {
+    padding-left: 25px;
     color: white;
 }
 
@@ -58,4 +92,9 @@ nav .app-header__user-nav-container {
     background-color: #26A69A;
     color: white;
     border-color: #26A69A;
+}
+
+.btn-primary:hover {
+    background-color: #00796B;
+
 }

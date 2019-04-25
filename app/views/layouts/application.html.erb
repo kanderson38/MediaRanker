@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('owl.jpg') %>
-    <link href="https://fonts.googleapis.com/css?family=Gudea|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gudea:400,700|Roboto" rel="stylesheet">
   </head>
   <body>
     <header class="app-header__header">
@@ -25,12 +25,24 @@
           <li class="nav-item app-header__nav-item">
             <%= link_to "Add a new work", new_work_path, class: "nav-link"  %>
           </li>
+          <li class="nav-item app-header__nav-item">
+            <%= link_to "View all users", users_path, class: "nav-link"  %>
+          </li>
           
         </ul>
         <ul class="nav app-header__user-nav-container">
+        <% if !session[:user_id] %>
           <li class="nav-item app-header__nav-item">
-            <%= link_to "View all users", works_path, class: "btn btn-primary"  %>
+            <%= link_to "Log In", login_path, class: "btn btn-primary"  %>
           </li>
+          <% else %>
+          <li class="nav-item app-header__nav-item">
+            <%= link_to "Logged In as #{User.find_by(id: session[:user_id]).username}" , current_user_path, class: "btn btn-primary"  %>
+          </li>
+          <li class="nav-item app-header__nav-item">
+            <%= link_to "Log Out", logout_path, class: "btn btn-primary", method: :post  %>
+          </li>
+          <% end %>
         </ul>
       </nav>
     </header>
