@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   def index
+    @users = User.all
   end
 
   def login_form
@@ -20,8 +21,20 @@ class UsersController < ApplicationController
   end
 
   def logout
+    user_id = session[:user_id]
+    session[:user_id] = nil
+    flash[:status] = :success
+    flash[:message] = "Successfully logged out #{User.find_by(id: user_id).username}"
+    redirect_to root_path
   end
 
   def current
+    if !session[:user_id]
+      redirect_to login_form
+      flash[:status] = :warning
+      flash[:message] = "You must be logged in to do that"
+    else
+      @user = User.find_by(id: session[:user_id])
+    end
   end
 end

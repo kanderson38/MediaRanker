@@ -1,4 +1,5 @@
 class Work < ApplicationRecord
+  has_many :votes
   validates :title, :creator, :category, presence: true
 
   def self.top_work
