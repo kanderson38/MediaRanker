@@ -29,12 +29,7 @@ class UsersController < ApplicationController
   end
 
   def current
-    if !session[:user_id]
-      redirect_to login_form
-      flash[:status] = :warning
-      flash[:message] = "You must be logged in to do that"
-    else
-      @user = User.find_by(id: session[:user_id])
-    end
+    @user = User.find_by(id: params[:id])
+    @votes = Vote.where(user_id: @user.id)
   end
 end

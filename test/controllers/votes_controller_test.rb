@@ -30,5 +30,14 @@ describe VotesController do
       expect(Vote.last.user_id).must_equal @user.id
       expect(Vote.last.work_id).must_equal @work.id
     end
+
+    it "won't let a user vote more than once for the same work" do
+      perform_login(@user)
+      post upvote_path(@work)
+      expect {
+        post upvote_path(@work)
+      }.wont_change "Vote.count"
+      check_flash(:warning)
+    end
   end
 end

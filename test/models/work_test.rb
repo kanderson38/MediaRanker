@@ -28,4 +28,9 @@ describe Work do
       expect(@movie.errors.messages).must_include :creator
     end
   end
+
+  describe "custom methods" do
+    it "finds the work with the most votes" do
+    end
+  end
 end

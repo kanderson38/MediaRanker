@@ -5,7 +5,7 @@ class WorksController < ApplicationController
   def index
     @books = Work.where(category: "book")
     @movies = Work.where(category: "movie")
-    @albums = Work.where(category: "album")
+    @albums = Work.where(category: "album").order("votes_count DESC")
   end
 
   def new
@@ -57,7 +57,9 @@ class WorksController < ApplicationController
     redirect_to works_path
   end
 
-  # def show ; end
+  def show
+    @votes = Vote.where(work_id: @work.id)
+  end
 
   # def edit ; end
 
