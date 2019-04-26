@@ -30,7 +30,6 @@ class ActiveSupport::TestCase
   def perform_login(user = nil)
     user ||= User.first
 
-    user = User.first
     login_data = {
       user: {
         username: user.username,
@@ -38,7 +37,6 @@ class ActiveSupport::TestCase
     }
     post login_path, params: login_data
 
-    # Verify the user ID was saved - if that didn't work, this test is invalid
     expect(session[:user_id]).must_equal user.id
 
     return user

@@ -1,4 +1,7 @@
 class WorksController < ApplicationController
+  before_action :find_work, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_if_not_found, only: [:show, :edit, :update, :destroy]
+
   def index
     @books = Work.where(category: "book")
     @movies = Work.where(category: "movie")
@@ -33,35 +36,7 @@ class WorksController < ApplicationController
     end
   end
 
-  def show
-    @work = Work.find_by(id: params[:id])
-
-    unless @work
-      flash[:status] = :warning
-      flash[:message] = "No work found for ID #{params[:id]}"
-      redirect_to root_path
-    end
-  end
-
-  def edit
-    @work = Work.find_by(id: params[:id])
-
-    unless @work
-      flash[:status] = :warning
-      flash[:message] = "No work found for ID #{params[:id]}"
-      redirect_to root_path
-    end
-  end
-
   def update
-    @work = Work.find_by(id: params[:id])
-
-    unless @work
-      flash[:status] = :warning
-      flash[:message] = "No work found for ID #{params[:id]}"
-      redirect_to root_path
-    end
-
     if @work.update(work_params)
       flash[:status] = :success
       flash[:message] = "Successfully updated #{@work.category} #{@work.id}"
@@ -74,25 +49,33 @@ class WorksController < ApplicationController
   end
 
   def destroy
-    work = Work.find_by(id: params[:id])
-
-    unless work
-      flash[:status] = :warning
-      flash[:message] = "No work found for ID #{params[:id]}"
-      redirect_to root_path
-    end
-
-    work.destroy
+    @work.destroy
 
     flash[:status] = :success
-    flash[:message] = "Successfully deleted #{work.category} #{work.id}"
+    flash[:message] = "Successfully deleted #{@work.category} #{@work.id}"
 
     redirect_to works_path
   end
+
+  # def show ; end
+
+  # def edit ; end
 
   private
 
   def work_params
     return params.require(:work).permit(:title, :creator, :category, :publication_year, :description)
+  end
+
+  def find_work
+    @work = Work.find_by(id: params[:id])
+  end
+
+  def redirect_if_not_found
+    unless @work
+      flash[:status] = :warning
+      flash[:message] = "No work found for ID #{params[:id]}"
+      redirect_to root_path
+    end
   end
 end
