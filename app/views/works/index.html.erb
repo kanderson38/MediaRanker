@@ -26,7 +26,7 @@
 </section>
 <section class="media_table">
   <h4>Books</h4>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Votes</th>
@@ -39,7 +39,7 @@
     <tbody>
       <% @books.each do |book| %>
         <tr>
-          <td>Vote</td>
+          <td><%= book.votes_count %></td>
           <td><%= link_to book.title, work_path(book) %></td>
           <td><%= book.creator %></td>
           <td><%= book.publication_year %></td>
@@ -51,7 +51,7 @@
 </section>
 <section class="media_table">
   <h4>Movies</h4>
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th>Votes</th>
@@ -64,7 +64,7 @@
     <tbody>
       <% @movies.each do |movie| %>
         <tr>
-          <td>Vote</td>
+          <td><%= movie.votes_count %></td>
           <td><%= link_to movie.title, work_path(movie) %></td>
           <td><%= movie.creator %></td>
           <td><%= movie.publication_year %></td>

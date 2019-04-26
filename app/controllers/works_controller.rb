@@ -3,8 +3,8 @@ class WorksController < ApplicationController
   before_action :redirect_if_not_found, only: [:show, :edit, :update, :destroy]
 
   def index
-    @books = Work.where(category: "book")
-    @movies = Work.where(category: "movie")
+    @books = Work.where(category: "book").order("votes_count DESC")
+    @movies = Work.where(category: "movie").order("votes_count DESC")
     @albums = Work.where(category: "album").order("votes_count DESC")
   end
 
