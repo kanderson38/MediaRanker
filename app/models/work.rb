@@ -11,7 +11,7 @@ class Work < ApplicationRecord
   end
 
   def self.top_ten(category)
-    top_works = Work.where(category: category).order("votes_count desc")
+    top_works = Work.where(category: category).order("votes_count desc").first(10)
 
     return top_works
   end
