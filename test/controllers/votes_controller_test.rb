@@ -40,4 +40,20 @@ describe VotesController do
       check_flash(:warning)
     end
   end
+
+  describe "destroyed by association with deleted work" do
+    before do
+      @work = Work.first
+      @user = User.first
+    end
+
+    it "reduces the vote count when an associated work is destroyed" do
+      perform_login(@user)
+
+      post upvote_path(@work)
+      expect {
+        delete work_path(@work)
+      }.must_change "Vote.count", -1
+    end
+  end
 end

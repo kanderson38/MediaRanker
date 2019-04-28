@@ -110,5 +110,13 @@ describe WorksController do
 
       must_redirect_to root_path
     end
+
+    it "destroys the work even if it has votes" do
+      post upvote_path(Work.first)
+
+      expect {
+        delete work_path(Work.first)
+      }.must_change "Work.count", -1
+    end
   end
 end
