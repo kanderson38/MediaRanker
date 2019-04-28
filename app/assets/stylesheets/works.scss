@@ -27,3 +27,13 @@
 .top-ten__list-container h2 {
     border-bottom: 2px solid #B2DFDB;
 }
+
+a.spotlight__link-to {
+    border-bottom: solid 2px #26A69A;;
+}
+
+a.spotlight__link-to:hover {
+    color: #00796B;
+    border-bottom: 2px solid #00796B;
+    text-decoration: none;
+}
