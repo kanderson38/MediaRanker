@@ -22,7 +22,7 @@ class WorksController < ApplicationController
 
   def create
     @work = Work.new(work_params)
-
+    @work.votes_count = 0
     success = @work.save
 
     if success

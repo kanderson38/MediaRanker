@@ -1,5 +1,5 @@
 class Work < ApplicationRecord
-  has_many :votes
+  has_many :votes, dependent: :nullify
   has_many :users, through: :votes
 
   validates :title, :creator, :category, presence: true
