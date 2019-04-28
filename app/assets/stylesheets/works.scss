@@ -37,3 +37,13 @@ a.spotlight__link-to:hover {
     border-bottom: 2px solid #00796B;
     text-decoration: none;
 }
+
+.list-group-item a:hover {
+    text-decoration: none;
+    color: #00796B;
+}
+
+td a:hover {
+    color: #00796B;
+    text-decoration: none
+}
