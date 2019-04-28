@@ -10,6 +10,7 @@ book:
   category: book
   publication_year: 1986
   description: Scary clown book with a giant spider too
+  votes_count: 0
 
 movie: 
   category: movie
@@ -17,3 +18,4 @@ movie:
   creator: Terry Gilliam
   publication_year: 1995
   description: Time travel and also Brad Pitt as a crazy dude
+  votes_count: 10
