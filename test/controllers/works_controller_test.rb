@@ -102,5 +102,13 @@ describe WorksController do
 
       check_flash
     end
+
+    it "redirects if the work is invalid, doesn't change the db" do
+      expect {
+        delete work_path(1234567)
+      }.wont_change "Work.count"
+
+      must_redirect_to root_path
+    end
   end
 end

@@ -30,6 +30,11 @@ class UsersController < ApplicationController
 
   def current
     @user = User.find_by(id: params[:id])
+
+    if !@user
+      redirect_to login_path
+      return
+    end
     @votes = Vote.where(user_id: @user.id)
   end
 end
