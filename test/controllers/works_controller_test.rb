@@ -116,7 +116,7 @@ describe WorksController do
 
       expect {
         delete work_path(Work.first)
-      }.must_change "Work.count", -1
+      }.must_change "Work.count", -2
     end
   end
 end
